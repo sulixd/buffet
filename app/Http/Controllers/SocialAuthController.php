@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Laravel\Socialite\Facades\Socialite;
 use Mockery\Exception;
@@ -36,6 +36,7 @@ class SocialAuthController extends Controller {
                     'email' => $email,
                     'password' => encrypt(''),
                     'google_id'=> $gid,
+                    'profile_image_url' => $this->saveAndGetAvatarPath($user->getAvatar(), $email),
                 ]);
                 $newUser->markEmailAsVerified();
                 Auth::login($newUser);
@@ -47,10 +48,24 @@ class SocialAuthController extends Controller {
         }
         abort(401, 'Jogosultsági hiba!');
     }
+
+    public function logout(): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application {
+        Auth::logout();
+        return redirect('/');
+    }
+
     protected function findUser(string $gid, string $email): User {
         return User::where('google_id', $gid)
             ->orWhere('email', $email)
             ->where('email_verified_at', '!=', null)
-            ->first();
+            ->first() ?: new User();
     }
+
+    protected function saveAndGetAvatarPath(string $externalUrl, string $email = ''): string {
+        $content = file_get_contents($externalUrl);
+        $path = 'avatars/' . uniqid() . '-' . md5($email . $externalUrl). '.png';
+        Storage::put('/public/' . $path, $content);
+        return asset('/storage/' . $path);
+    }
+
 }

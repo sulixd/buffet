@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'google_id',
+        'profile_image_url',
         'password',
     ];
 
