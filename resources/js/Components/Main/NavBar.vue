@@ -20,9 +20,9 @@ const isMenuOpen = ref(false)
                         {{ getUserFirstName($page.props.auth.user) }}
                     </span>
                 </button>
-                <Link to="/auth/redirect" v-else class="flex space-x-3 items-center w-full py-2 px-3 text-gray-900 rounded md:w-auto hover:bg-gray-50 focus:bg-gray-200">
+                <a href="/auth/redirect" v-else class="flex space-x-3 items-center w-full py-2 px-3 text-gray-900 rounded md:w-auto hover:bg-gray-50 focus:bg-gray-200">
                     Bejelentkezés
-                </Link>
+                </a>
                 <button @click="isMenuOpen = !isMenuOpen" type="button" class="mr-2 inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-700 rounded-lg md:hidden bg-gray-100 hover:bg-gray-50 focus:bg-gray-200">
                     <span class="sr-only">Open menu</span>
                     Menu icon
