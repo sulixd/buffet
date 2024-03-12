@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+
+.bree-serif-regular {
+    font-family: "Bree Serif", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+.homeBg {
+    background-image: url("data:image/svg+xml,%3Csvg id='visual' viewBox='0 0 900 600' width='900' height='600' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1'%3E%3Crect x='0' y='0' width='900' height='600' fill='%23ffffff'%3E%3C/rect%3E%3Cdefs%3E%3ClinearGradient id='grad1_0' x1='33.3%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='20%25' stop-color='%23fef3e2' stop-opacity='1'%3E%3C/stop%3E%3Cstop offset='80%25' stop-color='%23fef3e2' stop-opacity='1'%3E%3C/stop%3E%3C/linearGradient%3E%3C/defs%3E%3Cdefs%3E%3ClinearGradient id='grad1_1' x1='33.3%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='20%25' stop-color='%23fef3e2' stop-opacity='1'%3E%3C/stop%3E%3Cstop offset='80%25' stop-color='%23ffffff' stop-opacity='1'%3E%3C/stop%3E%3C/linearGradient%3E%3C/defs%3E%3Cdefs%3E%3ClinearGradient id='grad2_0' x1='0%25' y1='0%25' x2='66.7%25' y2='100%25'%3E%3Cstop offset='20%25' stop-color='%23fef3e2' stop-opacity='1'%3E%3C/stop%3E%3Cstop offset='80%25' stop-color='%23fef3e2' stop-opacity='1'%3E%3C/stop%3E%3C/linearGradient%3E%3C/defs%3E%3Cdefs%3E%3ClinearGradient id='grad2_1' x1='0%25' y1='0%25' x2='66.7%25' y2='100%25'%3E%3Cstop offset='20%25' stop-color='%23ffffff' stop-opacity='1'%3E%3C/stop%3E%3Cstop offset='80%25' stop-color='%23fef3e2' stop-opacity='1'%3E%3C/stop%3E%3C/linearGradient%3E%3C/defs%3E%3Cg transform='translate(900, 0)'%3E%3Cpath d='M0 378.6C-38.9 349.8 -77.8 320.9 -127.4 307.7C-177.1 294.4 -237.5 296.6 -267.7 267.7C-297.9 238.8 -297.9 178.8 -311.3 129C-324.8 79.2 -351.7 39.6 -378.6 0L0 0Z' fill='%23fff9f0'%3E%3C/path%3E%3Cpath d='M0 189.3C-19.4 174.9 -38.9 160.5 -63.7 153.8C-88.5 147.2 -118.7 148.3 -133.8 133.8C-149 119.4 -149 89.4 -155.7 64.5C-162.4 39.6 -175.8 19.8 -189.3 0L0 0Z' fill='%23fef3e2'%3E%3C/path%3E%3C/g%3E%3Cg transform='translate(0, 600)'%3E%3Cpath d='M0 -378.6C45.6 -368.1 91.2 -357.7 142 -342.8C192.8 -327.9 248.8 -308.5 267.7 -267.7C286.6 -226.9 268.6 -164.5 280.9 -116.3C293.2 -68.1 335.9 -34.1 378.6 0L0 0Z' fill='%23fff9f0'%3E%3C/path%3E%3Cpath d='M0 -189.3C22.8 -184.1 45.6 -178.8 71 -171.4C96.4 -163.9 124.4 -154.3 133.8 -133.8C143.3 -113.4 134.3 -82.3 140.4 -58.2C146.6 -34.1 167.9 -17 189.3 0L0 0Z' fill='%23fef3e2'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.global-blur,
+.hover\:global-blur:hover {
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+}

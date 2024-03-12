@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -11,7 +12,8 @@ class ProductFactory extends Factory
 {
     protected $menus = [];
 
-    public function __construct() {
+    public function __construct(...$args) {
+        parent::__construct(...$args);
         $this->menus = require __DIR__ . '/menus.php';
     }
     /**
@@ -21,12 +23,12 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
-        $menu = array_rand($this->menus);
+        $menu = $this->menus[array_rand($this->menus)];
         return [
             'name' => $menu[0],
             'description' => $menu[2],
             'image_url' => $menu[1],
-            'price' => $this->faker->randomFloat(2, 0, 1000),
+            'price' => $this->faker->numberBetween(300, 1000),
         ];
     }
 }

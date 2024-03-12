@@ -10,6 +10,11 @@ class Ingredient extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'ingredient',
+        'image_url'
+    ];
+
     public function products(): BelongsToMany {
         return $this->belongsToMany(Product::class);
     }

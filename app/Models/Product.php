@@ -10,6 +10,13 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'description',
+        'image_url',
+        'price'
+    ];
+
     public function ingredients(): BelongsToMany {
         return $this->belongsToMany(Ingredient::class);
     }

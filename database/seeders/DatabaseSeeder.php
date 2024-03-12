@@ -5,9 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Ingredient;
 use App\Models\Product;
-use App\Models\ProductIngredient;
 use App\Models\User;
-use Database\Factories\ProductIngredientFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,12 +15,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Ingredient::factory()->create(15);
-        Product::factory()->create(15)->each(function(Product $product) {
+        echo "Creating ingredients\n";
+        Ingredient::factory(15)->create();
+        echo "Creating products\n";
+        Product::factory(15)->create()->each(function($product) {
             for($i = 0; $i < rand(3, 7); $i++) {
-                $product->ingredients();
+                echo "Attaching random ingredient to product\n";
+                $product->ingredients()->attach(Ingredient::inRandomOrder()->first()->id);
             }
         });
-        User::factory()->create(10);
+        echo "Creating users\n";
+        User::factory(10)->create();
     }
 }

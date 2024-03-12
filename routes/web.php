@@ -20,10 +20,8 @@ Route::get('/', function () {
     return Inertia::render('Home', [
         'canLogin' => Route::has('social.redirect'),
     ]);
-});
+})->name('home');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/products', [\App\Http\Controllers\ProductsController::class, 'index'])->middleware('auth');
 
 require __DIR__.'/auth.php';
