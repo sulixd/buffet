@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,11 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-Route::get('/products', [\App\Http\Controllers\ProductsController::class, 'index'])->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::get('/products', [ProductsController::class, 'index']);
+
+    Route::get('/products/{id}', [ProductsController::class, 'product'])->name('product.add');
+});
+
 
 require __DIR__.'/auth.php';

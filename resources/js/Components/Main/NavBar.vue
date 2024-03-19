@@ -17,12 +17,12 @@ const modalOpen = ref(false)
 <template>
     <nav class="bg-white w-full z-20 top-0 left-0 border-b" :class="{'fixed': fixed}">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <Link to="/" class="flex items-center">
+            <Link href="/" class="flex items-center">
                 <img src="/images/logo.webp" class="w-[100px] md:w-[100px] mr-3" alt="Logo">
             </Link>
             <div class="flex md:order-2">
                 <button @click="modalOpen = !modalOpen" v-if="$page.props.auth.user" class="flex space-x-3 items-center w-full py-2 px-3 text-gray-900 rounded md:w-auto hover:bg-gray-50 focus:bg-gray-200">
-                    <img :src="$page.props.auth.user.profile_image_url" class="w-[26px] rounded-full">
+                    <img alt="Büfé Logó" :src="$page.props.auth.user.profile_image_url" class="w-[26px] rounded-full">
                     <span>
                         {{ getUserFirstName($page.props.auth.user) }}
                     </span>
@@ -50,7 +50,7 @@ const modalOpen = ref(false)
             </div>
         </div>
     </nav>
-    <DefaultModal @close="modalOpen = false" :show="modalOpen && $page.props.auth.user">
+    <DefaultModal @close="modalOpen = false" :show="modalOpen && !!$page.props.auth.user">
         <h2 class="text-xl text-left">Szia {{ getUserFirstName($page.props.auth.user) }}!</h2>
         <hr class="border-b-2 border-gray-200 my-4 rounded">
         <div>
