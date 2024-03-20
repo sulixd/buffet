@@ -26,7 +26,7 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/products', [ProductsController::class, 'index']);
 
-    Route::get('/products/{id}', [ProductsController::class, 'product'])->name('product.add');
+    Route::post('/cart/add/{productId}', [ProductsController::class, 'product'])->name('product.add');
 });
 
 

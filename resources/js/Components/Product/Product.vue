@@ -8,9 +8,9 @@
             <h4 class="text-xl bree-serif-regular">{{ product.name }}</h4>
             <hr class="my-2 rounded border-0 bg-gray-300 h-1">
             <p class="text-lg">Ár: {{ price }}</p>
-            <LinkOrange :href="`/products/${product.id}`" class="mt-2 !rounded-md !py-2">
+            <ButtonOrange @click="emit('order', product)" class="mt-2 !rounded-md !py-2">
                 Kosárba
-            </LinkOrange>
+            </ButtonOrange>
         </div>
     </div>
 </template>
@@ -18,11 +18,13 @@
 <script setup lang="ts">
 import {Product} from "@/types";
 import {computed} from "vue";
-import LinkOrange from "@/Components/Main/LinkOrange.vue";
+import ButtonOrange from "@/Components/Main/ButtonOrange.vue";
 
 const props = defineProps<{
     product: Product;
 }>()
+
+const emit = defineEmits(['order'])
 
 const price = computed(() => {
     return props.product.price.toLocaleString('hu-HU', {

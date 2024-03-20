@@ -8,12 +8,19 @@ export interface User {
     profile_image_url: string;
 }
 
+export interface Ingredient {
+    id: number;
+    ingredient: string;
+    image_url: string;
+}
+
 export interface Product {
     id: number;
     name: string;
     description: string;
     image_url: string;
     price: number;
+    ingredients: Array<Ingredient>;
 }
 
 export interface PaginationLink {

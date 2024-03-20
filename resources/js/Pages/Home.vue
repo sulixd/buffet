@@ -1,7 +1,7 @@
 <template>
     <Head title="Főoldal" />
     <MainLayout :navFixed="true">
-        <section class="min-h-screen h-auto overflow-hidden flex">
+        <section class="min-h-screen homeBg h-auto overflow-hidden flex">
             <div class="m-auto z-10 sm:px-0 max-w-sm w-[95%] md:w-full">
                 <div class="py-8 px-3 rounded-lg">
                     <div class="px-4 py-2">
