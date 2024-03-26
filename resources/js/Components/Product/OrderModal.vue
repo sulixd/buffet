@@ -2,7 +2,7 @@
     <DefaultModal :show="true" @close="emit('close')">
         <h2 class="text-xl bree-serif-regular">{{ product.name }}</h2>
         <hr class="my-3 rounded border-0 bg-gray-300 h-1">
-        <div class="text-left">
+        <div class="text-left mt-4">
             <p>Kérd ahogy szereted</p>
             <ul class="max-h-[300px] overflow-x-hidden overflow-y-scroll mb-4">
                 <li v-for="(ingredient, index) in product.ingredients"
@@ -17,11 +17,11 @@
                         </p>
                     </div>
                     <div class="flex items-center space-x-2">
-                        <Toggler/>
+                        <Toggler @change="toggle(ingredient.id)" :active="activeIngredients.includes(ingredient.id)" />
                     </div>
                 </li>
-                <ButtonOrange>Kosárba</ButtonOrange>
             </ul>
+            <ButtonOrange @click="submit">Kosárba</ButtonOrange>
         </div>
     </DefaultModal>
 </template>
@@ -31,10 +31,33 @@ import DefaultModal from "@/Components/Main/DefaultModal.vue";
 import type {Product} from "@/types";
 import ButtonOrange from "@/Components/Main/ButtonOrange.vue";
 import Toggler from "@/Components/Toggler.vue";
+import {ref} from "vue";
+import { router } from '@inertiajs/vue3'
 
-defineProps<{
+const props = defineProps<{
     product: Product;
 }>()
+
+const activeIngredients = ref(props.product.ingredients.map(i => i.id))
+
+const toggle = (id: number) => {
+    if(activeIngredients.value.includes(id)) {
+        activeIngredients.value = activeIngredients.value.filter(i => i!= id)
+    } else {
+        activeIngredients.value.push(id)
+    }
+}
+
+const submit = () => {
+    const ingredient_ids = activeIngredients.value.filter((item, index) => activeIngredients.value.indexOf(item) === index)
+    router.visit('/cart/add', {
+        method: 'post',
+        data: {
+            product_id: props.product.id,
+            ingredient_ids,
+        }
+    })
+}
 
 const emit = defineEmits(['close'])
 </script>

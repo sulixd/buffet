@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductOrderRequest;
 use App\Models\Product;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -14,5 +15,13 @@ class ProductsController extends Controller
         return Inertia::render('Products', [
             'paginator' => $paginator
         ]);
+    }
+
+    public function addToCart(ProductOrderRequest $request): Response {
+        $data = $request->validated();
+        $cart = Session::get('cart', []);
+        $cart[] = $data;
+        Session::put('cart', $cart);
+        return $this->index();
     }
 }

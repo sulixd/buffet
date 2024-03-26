@@ -2,7 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
 
@@ -35,10 +37,22 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'cart' => $this->getCartItems(),
             'ziggy' => fn () => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
+        ];
+    }
+
+    protected function getCartItems(): array {
+        $items = Session::get('cart', []);
+        if(empty($items)) {
+            return ['items' => [], 'products' => []];
+        }
+        return [
+            'items' => $items,
+            'products' => Product::with('ingredients')->whereIn('id', array_keys($items)),
         ];
     }
 }
