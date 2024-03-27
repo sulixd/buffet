@@ -52,7 +52,7 @@ class HandleInertiaRequests extends Middleware
         }
         return [
             'items' => $items,
-            'products' => Product::with('ingredients')->whereIn('id', array_keys($items)),
+            'products' => Product::with('ingredients')->whereIn('id', array_keys($items))->get(),
         ];
     }
 }

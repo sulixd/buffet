@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -27,6 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/products', [ProductsController::class, 'index']);
 
     Route::post('/cart/add', [ProductsController::class, 'addToCart'])->name('product.add');
+
+    Route::get('/cart', [CartController::class, 'index']);
 });
 
 

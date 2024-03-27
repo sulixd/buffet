@@ -34,9 +34,20 @@ export interface Pagination {
     data: Array<object>;
 }
 
+export interface CartItem {
+    product_id: number;
+    ingredient_ids: Array<number>;
+}
+
+export interface Cart {
+    items: Array<CartItem>;
+    products: Array<Product>;
+}
+
 export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
     auth: {
         user: User;
     };
+    cart: Cart;
     ziggy: Config & { location: string };
 };
